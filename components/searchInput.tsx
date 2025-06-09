@@ -1,6 +1,6 @@
 import { icons } from "@/constants/icons";
-import { useNavigationState } from "@react-navigation/native";
-import React, { useEffect, useRef } from "react";
+import { useFocusEffect, useNavigationState } from "@react-navigation/native";
+import React, { useCallback, useRef } from "react";
 import { Image, TextInput, View } from "react-native";
 
 const SearchInput = ({
@@ -17,14 +17,20 @@ const SearchInput = ({
   const inputRef = useRef<TextInput>(null);
 
   const navigated = useNavigationState(
-    (state) => state.routes[0].name === "search"
+    (state) => state.routes[state.index].name === "search"
   );
 
-  useEffect(() => {
-    if (navigated) {
-      inputRef.current?.focus();
-    }
-  }, [navigated]);
+  useFocusEffect(
+    useCallback(() => {
+      if (navigated) {
+        const timer = setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
+
+        return () => clearTimeout(timer);
+      }
+    }, [navigated])
+  );
 
   const isNavigationButton = onPress && !onChangeText;
 

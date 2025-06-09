@@ -34,9 +34,8 @@ const MovieCard = ({
 
         <View className="flex-row items-center justify-between mt-2">
           <Text className="text-gray-300 text-md">
-            {release_date.split("-")[0]}
+            {release_date?.split("-")[0]}
           </Text>
-          {/* <Text className="text-gray-300 text-md uppercase ">Movie</Text> */}
         </View>
       </TouchableOpacity>
     </Link>

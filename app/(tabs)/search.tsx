@@ -27,7 +27,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <View className="flex-1 bg-[#030014]">
+    <View className="flex-1 bg-[#030014] px-2">
       <Image source={images.bg} className=" w-full absolute z-0" />
       <FlatList
         data={data?.results}
@@ -52,6 +52,7 @@ const Search = () => {
                 autoFocus={true}
                 value={query}
                 onChangeText={(text) => setQuery(text)}
+                onPress={() => setQuery("")}
               />
             </View>
             {loading && (
@@ -83,7 +84,7 @@ const Search = () => {
         }
         ListEmptyComponent={
           <View className="flex-1 justify-center items-center ">
-            <Text className="text-white">No results </Text>
+            <Text className="text-white">No results</Text>
           </View>
         }
       />

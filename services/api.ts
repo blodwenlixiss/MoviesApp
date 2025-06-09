@@ -24,6 +24,23 @@ export const fetchMovies = async ({ query }: { query: string }) => {
   return data;
 };
 
+export const movieDetails = async (id: string) => {
+  const response = await fetch(
+    `${TMBDB_CONFIG.BASE_URL}/movie/${id}?api_key=${TMBDB_CONFIG.API_KEY}`,
+    {
+      method: "GET",
+      headers: TMBDB_CONFIG.headers,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movie details");
+  }
+  const data = await response.json();
+
+  return data;
+};
+
 export const upComingMovies = async () => {
   const response = await fetch(
     `${TMBDB_CONFIG.BASE_URL}/movie/upcoming?language=en-US&page=1`,

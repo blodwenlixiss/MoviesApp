@@ -28,7 +28,7 @@ const Index = () => {
   } = useFetch(() => upComingMovies());
 
   return (
-    <View className="flex-1 bg-[#030014]">
+    <View className="flex-1 bg-[#030114]">
       <Image source={images.bg} className=" w-full absolute z-0" />
 
       <ScrollView className="flex-1 px-5">
